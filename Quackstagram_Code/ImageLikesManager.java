@@ -33,14 +33,17 @@ public class ImageLikesManager {
         return likesMap;
     }
 
-    // Method to save likes to file
+    // Method to save likes to file - Method allows the user to like the picture
+    // infinitely many times - No catches
     private void saveLikes(Map<String, Set<String>> likesMap) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(likesFilePath, false))) {
-            for (Map.Entry<String, Set<String>> entry : likesMap.entrySet()) {
+            for (Map.Entry<String, Set<String>> entry : likesMap.entrySet()) { // Where is the entrySet coming from?
                 String line = entry.getKey() + ":" + String.join(",", entry.getValue());
                 writer.write(line);
                 writer.newLine();
             }
+        } catch (Exception e) {
+
         }
     }
 
